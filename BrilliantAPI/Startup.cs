@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Models;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Utilities;
@@ -38,6 +39,9 @@ namespace BrilliantAPI
             {
                 options.UseSqlServer(Configuration.GetConnectionString("BrilliantDb"));
             });
+            services.AddIdentity<User, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<BrilliantDbContext>();
 
             services.AddRepository();
             services.AddRepository();
